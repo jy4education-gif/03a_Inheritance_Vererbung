@@ -5,14 +5,18 @@ public class Cat {
   private String firstName;
   private String furColor;
   private int age; 
+  private boolean isFemale;
 
-  public Cat(String firstName, String furColor, int age) {
+  private int counter;
+ 
+  public Cat(String firstName, String furColor, int age, boolean isFemale) {
     this.firstName = firstName;
     this.furColor = furColor;
     this.age = age;
+    this.isFemale = isFemale;
   }
 
-  public String getStringAttributes(String op) {
+public String getStringAttributes(String op) {
     switch (op) {
       case "#name":
         return firstName;
@@ -23,9 +27,27 @@ public class Cat {
     }
   }
 
-  public String getAge() {
-    return String.valueOf(age);
+public String getAge() {
+    if (isFemale) {
+      return checkCompliance();
+    } else {
+      return String.valueOf(age);
+    } 
   }
+private String checkCompliance(){
+       counter++;
 
+        switch (counter) {
+            case 1:
+                return "Ein Gentleman fragt eine Lady nicht nach ihrem Alter."; // 1st time
+            case 2:
+                return "Dies ist nicht die Antwort, die du suchst."; // 2nd time
+            case 3:
+                return "Ich bin zeitlos. Frag mich lieber nach meinen neun Leben."; // 3rd time 
+            default:
+                return "Systemmeldung: Zu viele neugierige Fragen. Gespräch wird beendet."; //4th ++
+        }
+      }
 }
+
   
